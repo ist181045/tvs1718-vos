@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Project Information -->
+  <groupId>pt.ulisboa.tecnico.meic.tvs</groupId>
+  <artifactId>vos</artifactId>
+  <name>Vos</name>
+  <version>1.0-SNAPSHOT</version>
+  <description>System responsible for managing the Vos mobile communications operator</description>
+  <url>https://${scm.url}</url>
+
+  <!-- Issue management -->
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://${scm.url}/issues</url>
+  </issueManagement>
+
+  <!-- Year project was started -->
+  <inceptionYear>2018</inceptionYear>
+
+  <!-- Developers -->
+  <developers>
+    <!-- ist181057 -->
+    <developer>
+      <id>kika96kika</id>
+      <name>Francisca Cambra</name>
+      <email>francisca.cambra@tecnico.ulisboa.pt</email>
+      <url>https://${scm.host}/kika96kika</url>
+      <organization>${org.ist.name}</organization>
+      <organizationUrl>${org.ist.url}</organizationUrl>
+    </developer>
+    <!-- ist181045 -->
+    <developer>
+      <id>rgcv</id>
+      <name>Rui Ventura</name>
+      <email>rui.ventura@tecnico.ulisboa.pt</email>
+      <url>http://web.tecnico.ulisboa.pt/rui.ventura</url>
+      <organization>${org.ist.name}</organization>
+      <organizationUrl>${org.ist.url}</organizationUrl>
+    </developer>
+  </developers>
+
+  <!-- Licenses under which the project is covered -->
+  <licenses>
+    <!-- MTI License -->
+    <license>
+      <name>MIT</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>manual</distribution>
+    </license>
+  </licenses>
+
+  <!-- Source Control Management system -->
+  <scm>
+    <connection>scm:git:https://${scm.url}.git</connection>
+    <developerConnection>scm:git:git@${scm.host}:${scm.org}/${scm.repo}.git</developerConnection>
+    <url>http://${scm.url}</url>
+  </scm>
+
+  <!-- Project organization -->
+  <organization>
+    <name>ist181045</name>
+    <url>https://${scm.host}/${scm.org}</url>
+  </organization>
+
+  <!-- Project dependencies -->
+  <dependencies>
+    <!-- TestNG -->
+    <dependency>
+      <scope>test</scope>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.14.2</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Properties -->
+  <properties>
+    <!-- Maven -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- Project -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Others -->
+    <!-- SCM -->
+    <scm.host>github.com</scm.host>
+    <scm.org>ist181045</scm.org>
+    <scm.repo>tvs1718-vos</scm.repo>
+    <scm.url>${scm.host}/${scm.org}/${scm.repo}</scm.url>
+    <!-- Organization -->
+    <org.ist.name>Instituto Superior Técnico</org.ist.name>
+    <org.ist.url>https://tecnico.ulisboa.pt</org.ist.url>
+  </properties>
+</project>
