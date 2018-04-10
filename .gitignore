@@ -3,6 +3,9 @@
 .project
 .settings/
 
+### VSCode
+.vscode/
+
 ### Maven
 target/
 pom.xml.tag
