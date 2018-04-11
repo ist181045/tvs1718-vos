@@ -48,7 +48,7 @@
     <!-- MTI License -->
     <license>
       <name>MIT</name>
-      <url>https://opensource.org/licenses/MIT</url>
+      <url>https://raw.${scm.host}/${scm.group}/${scm.repo}/master/LICENSE.txt</url>
       <distribution>manual</distribution>
     </license>
   </licenses>
