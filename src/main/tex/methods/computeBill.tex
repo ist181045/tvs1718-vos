@@ -27,20 +27,20 @@ through all of his registered mobile phones
 \label{sec:methods.computeBill.dtree}
 \begin{center}
   \begin{forest} decision tree
-    [\#calls,plain content
+    [\#calls
       [\#texts;{< 10},elo={yshift=4pt}
-        [+0.15/call\\+0.05/text\\$v_0$;{< 300},  align=center]
-        [+0.15/call\\+0.45/text\\$v_1$;{\ge 300},align=center]
+        [0.15/call\\0.05/text\\$v_0$;{< 300},  align=center]
+        [0.15/call\\0.045/text\\$v_1$;{\ge 300},align=center]
       ]
       [\#texts;{[10,50[},elo={left},anchors=south east
-        [+0.10/call\\+0.04/text\\$v_2$;{< 100},   align=center]
-        [+0.10/call\\+0.035/text\\$v_3$;{\ge 100},align=center]
+        [0.10/call\\0.04/text\\$v_2$;{< 100},   align=center]
+        [0.10/call\\0.035/text\\$v_3$;{\ge 100},align=center]
       ]
       [\#texts;{[50,500[},elo={left,xshift=-6pt}
-        [+0.09/call\\+0.03/text\\$v_4$;{< 300},  align=center]
-        [+0.08/call\\+0.02/text\\$v_5$;{\ge 300},align=center]
+        [0.09/call\\0.03/text\\$v_4$;{< 300},  align=center]
+        [0.08/call\\0.02/text\\$v_5$;{\ge 300},align=center]
       ]
-      [+0.06/call\\free text\\$v_6$;{\ge 500},align=center,elo={yshift=4pt}]
+      [0.06/call\\free texts\\$v_6$;{\ge 500},align=center,elo={yshift=4pt}]
     ]
   \end{forest}
 \end{center}
