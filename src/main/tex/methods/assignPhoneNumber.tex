@@ -21,7 +21,7 @@
 \label{sec:methods.assignPhoneNumber}
 Assigns a free phone number to a client of \textit{Vos} if all conditions are
 met. If at least one of these conditions does not hold, then this method does
-not change anything and throws the YES exception.
+not change anything and throws the \texttt{InvalidOperationException} exception.
 \begin{itemize}
   \large
   \item \textbf{Test Pattern}
@@ -41,7 +41,7 @@ not change anything and throws the YES exception.
     \item Secondary functions
     \begin{itemize}
       \small
-      \item Throw YES if conditions aren't met
+      \item Throw \texttt{InvalidOperationException} if conditions aren't met
         \begin{itemize}
           \footnotesize
           \item Invalid nif ($\rm{nif} \notin [10^8,10^9-1]$)
