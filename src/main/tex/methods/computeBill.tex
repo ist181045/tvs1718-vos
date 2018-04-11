@@ -30,18 +30,18 @@ through all of his registered mobile phones
   \begin{forest} decision tree
     [\#calls,plain content
       [\#texts;{< 10},plain content,elo={yshift=4pt}
-        [+0.15/call\\+0.05/text;{< 300},  align=center]
-        [+0.15/call\\+0.45/text;{\ge 300},align=center]
+        [+0.15/call\\+0.05/text\\$v_0$;{< 300},  align=center]
+        [+0.15/call\\+0.45/text\\$v_1$;{\ge 300},align=center]
       ]
       [\#texts;{[10,50[},plain content,elo={left}
-        [+0.15/call\\+0.05/text;{< 100},  align=center]
-        [+0.15/call\\+0.45/text;{\ge 100},align=center]
+        [+0.15/call\\+0.05/text\\$v_2$;{< 100},  align=center]
+        [+0.15/call\\+0.45/text\\$v_3$;{\ge 100},align=center]
       ]
       [\#texts;{[50,500[},plain content,elo={left,yshift=-4pt}
-        [+0.09/call\\+0.03/text;{< 300},  align=center]
-        [+0.08/call\\+0.02/text;{\ge 300},align=center]
+        [+0.09/call\\+0.03/text\\$v_4$;{< 300},  align=center]
+        [+0.08/call\\+0.02/text\\$v_5$;{\ge 300},align=center]
       ]
-      [+0.06/call\\free text;{\ge 500},align=center,elo={yshift=4pt}]
+      [+0.06/call\\free text\\$v_6$;{\ge 500},align=center,elo={yshift=4pt}]
     ]
   \end{forest}
 \end{center}
