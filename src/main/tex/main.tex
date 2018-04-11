@@ -19,18 +19,30 @@
 % SOFTWARE.
 
 % !TeX root = ./main.tex
-\documentclass[a4paper,11pt,draft]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage{preamble}
 \begin{document}
-\maketitle
+\begin{titlepage}
+  \maketitle
+  \thispagestyle{empty}
+\end{titlepage}
+\newpage
+
+\renewcommand{\baselinestretch}{1.5}\normalsize
+\tableofcontents
+\renewcommand{\baselinestretch}{1}\normalsize
+\newpage
 
 \section{Method-Scope Tests}
 \label{sec:methods}
 \import{methods/}{assignPhoneNumber}
+\newpage
 \import{methods/}{computeBill}
+\newpage
 
 \section{Class-Scope Tests}
 \label{sec:classes}
 \import{classes/}{client}
+\newpage
 \import{classes/}{mobile}
 \end{document}
