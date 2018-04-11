@@ -2,8 +2,9 @@
   "latex-workshop.latex.outputDir": "../../../target/tex",
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdflatex -> copy report",
+      "name": "pdflatex*2 -> copy report",
       "tools": [
+        "pdflatex",
         "pdflatex",
         "copy report"
       ]
