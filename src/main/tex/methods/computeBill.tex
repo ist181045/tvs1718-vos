@@ -49,3 +49,175 @@ through all of his registered mobile phones
     ]
   \end{forest}
 \end{center}
+
+\subsubsection{Domain Matrices}
+\label{sec:methods.computeBill.matrices}
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v0}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{4}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_0$}
+    & \multicolumn{4}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                              &  ---  &   1   &  ---  &   2   \\ \hline
+    $\#calls$ & $< 10$  & ON  &  10   &       &       &       \\ \cline{3-7}
+              &         & OFF &       &   9   &       &       \\ \cline{2-7}
+              & Typical & IN  &       &       &   8   &   7   \\ \hline
+    $\#texts$ & $< 300$ & ON  &       &       &  300  &       \\ \cline{3-7}
+              &         & OFF &       &       &       &  299  \\ \cline{2-7}
+              & Typical & IN  &  147  &  204  &       &       \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                              & $v_3$ & 11.55 & $v_1$ & 16.00 \\ \hline
+  \end{tabular}
+  \caption{$v_0$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v0}
+\end{table}
+\clearpage
+
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v1}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{4}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_1$}
+    & \multicolumn{4}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                                &  ---  &   3    &   4   &  ---  \\ \hline
+    $\#calls$ &  $< 10$   & ON  &  10   &        &       &       \\ \cline{3-7}
+              &           & OFF &       &   9    &       &       \\ \cline{2-7}
+              &  Typical  & IN  &       &        &   6   &   5   \\ \hline
+    $\#texts$ & $\ge 300$ & ON  &       &        &  300  &       \\ \cline{3-7}
+              &           & OFF &       &        &       &  299  \\ \cline{2-7}
+              &  Typical  & IN  &  320  &  400   &       &       \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                                & $v_3$ & 19.35  & 14.40 & $v_0$ \\ \hline
+  \end{tabular}
+  \caption{$v_1$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v1}
+\end{table}
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v2}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{6}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_2$}
+    & \multicolumn{6}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                               &  5   &  ---  &  ---  &  6   &  ---  &  7   \\ \hline
+    $\#calls$ & $\ge 10$ & ON  &  10  &       &       &      &       &      \\ \cline{3-9}
+              &          & OFF &      &   9   &       &      &       &      \\ \cline{2-9}
+              & $< 50$   & ON  &      &       &  50   &      &       &      \\ \cline{3-9}
+              &          & OFF &      &       &       &  49  &       &      \\ \cline{2-9}
+              & Typical  & IN  &      &       &       &      &  22   &  35  \\ \hline
+    $\#texts$ & $< 100$  & ON  &      &       &       &      &  100  &      \\ \cline{3-9}
+              &          & OFF &      &       &       &      &       &  99  \\ \cline{2-9}
+              & Typical  & IN  &  48  &  20   &  33   &  15  &       &      \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                               & 2.92 & $v_0$ & $v_4$ & 5.50 & $v_3$ & 7.46 \\ \hline
+  \end{tabular}
+  \caption{$v_2$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v2}
+\end{table}
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v3}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{6}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_3$}
+    & \multicolumn{6}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                                &  8   &  ---  &  ---  &   9   &  10  &  ---  \\ \hline
+    $\#calls$ & $\ge 10$  & ON  &  10  &       &       &       &      &       \\ \cline{3-9}
+              &           & OFF &      &   9   &       &       &      &       \\ \cline{2-9}
+              & $< 50$    & ON  &      &       &  50   &       &      &       \\ \cline{3-9}
+              &           & OFF &      &       &       &  49   &      &       \\ \cline{2-9}
+              & Typical   & IN  &      &       &       &       &  12  &  44   \\ \hline
+    $\#texts$ & $\ge 100$ & ON  &      &       &       &       & 100  &       \\ \cline{3-9}
+              &           & OFF &      &       &       &       &      &  99   \\ \cline{2-9}
+              & Typical   & IN  & 148  &  220  &  333  &  414  &      &       \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                                & 6.18 & $v_0$ & $v_5$ & 15.49 & 4.70 & $v_2$ \\ \hline
+  \end{tabular}
+  \caption{$v_3$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v3}
+\end{table}
+\clearpage
+
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v4}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{6}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_4$}
+    & \multicolumn{6}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                               &  11   &  ---  &  ---  &  12   &  ---  &  13   \\ \hline
+    $\#calls$ & $\ge 50$ & ON  &  50   &       &       &       &       &       \\ \cline{3-9}
+              &          & OFF &       &  49   &       &       &       &       \\ \cline{2-9}
+              & $< 500$  & ON  &       &       &  500  &       &       &       \\ \cline{3-9}
+              &          & OFF &       &       &       &  499  &       &       \\ \cline{2-9}
+              & Typical  & IN  &       &       &       &       &  142  &  51   \\ \hline
+    $\#texts$ & $< 300$  & ON  &       &       &       &       &  300  &       \\ \cline{3-9}
+              &          & OFF &       &       &       &       &       &  299  \\ \cline{2-9}
+              & Typical  & IN  &  240  &  189  &  98   &  10   &       &       \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                               & 11.70 & $v_3$ & $v_6$ & 45.21 & $v_5$ & 13.56 \\ \hline
+  \end{tabular}
+  \caption{$v_4$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v4}
+\end{table}
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v5}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{6}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_5$}
+    & \multicolumn{6}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                                &  14   &  ---  &  ---  &  15   &  16   &  ---  \\ \hline
+    $\#calls$ & $\ge 50$  & ON  &  50   &       &       &       &       &       \\ \cline{3-9}
+              &           & OFF &       &  49   &       &       &       &       \\ \cline{2-9}
+              & $< 500$   & ON  &       &       &  500  &       &       &       \\ \cline{3-9}
+              &           & OFF &       &       &       &  499  &       &       \\ \cline{2-9}
+              & Typical   & IN  &       &       &       &       &  200  &  60   \\ \hline
+    $\#texts$ & $\ge 300$ & ON  &       &       &       &       &  300  &       \\ \cline{3-9}
+              &           & OFF &       &       &       &       &       &  299  \\ \cline{2-9}
+              & Typical   & IN  &  314  &  500  &  616  &  404  &       &       \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                                & 10.28 & $v_3$ & $v_6$ & 48.00 & 22.00 & $v_4$ \\ \hline
+  \end{tabular}
+  \caption{$v_5$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v5}
+\end{table}
+
+\addcontentsline{toc}{subsubsection}%
+  {\protect\numberline{}\nameref*{tab:methods.computeBill.matrices.v6}}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|*{3}{l|}*{2}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{$v_6$}
+    & \multicolumn{2}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+                                &  17   &    ---    \\ \hline
+    $\#calls$ & $\ge 500$ & ON  &  500  &           \\ \cline{3-5}
+              &           & OFF &       &    499    \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+                                & 30.00 & $v_4/v_5$ \\ \hline
+  \end{tabular}
+  \caption{$v_6$ domain matrix}
+  \label{tab:methods.computeBill.matrices.v6}
+\end{table}
+\clearpage
