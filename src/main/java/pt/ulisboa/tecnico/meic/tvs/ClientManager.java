@@ -36,7 +36,7 @@ class ClientManager {
   /**
    * Computes the bill of the client taking into account his communications.
    */
-  float computBill(Client client) {
+  float computeBill(Client client) {
     // TODO: Implement stub method
     return 0f;
   }
