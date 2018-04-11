@@ -1,0 +1,169 @@
+% Copyright 2018 Francisca Cambra, Rui Ventura
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+\subsection{\texttt{assignPhoneNumber}}
+\label{sec:methods.assignPhoneNumber}
+Assigns a free phone number to a client of \textit{Vos} if all conditions are
+met. If at least one of these conditions does not hold, then this method does
+not change anything and throws the YES exception.
+\begin{itemize}
+  \large
+  \item \textbf{Test Pattern}
+  \begin{itemize}
+    \normalsize
+    \item Category-partition
+  \end{itemize}
+
+  \item \textbf{Functions}
+  \begin{itemize}
+    \normalsize
+    \item Primary function
+    \begin{itemize}
+      \small
+      \item Assign free phone number to a client without a number
+    \end{itemize}
+    \item Secondary functions
+    \begin{itemize}
+      \small
+      \item Throw YES if conditions aren't met
+        \begin{itemize}
+          \footnotesize
+          \item Invalid nif ($\rm{nif} \notin [10^8,10^9-1]$)
+          \item Invalid phone number ($\rm{number} \notin [10^8,10^9-1]$)
+          \item Client doesn't exist (valid nif)
+          \item Assign a previously assigned number to a client
+          \item Assign a number to a client that already has said number
+        \end{itemize}
+    \end{itemize}
+  \end{itemize}
+
+  \item \textbf{I/O Parameters}
+  \begin{itemize}
+    \normalsize
+    \item Input
+    \begin{itemize}
+      \small
+      \item \texttt{clientNif} -- The nif of the client to assign a number to
+      \item \texttt{phoneNumber} -- The phone number to be assigned
+      \item \texttt{clients} -- The set of \textit{Vos} clients managed by
+            \texttt{ClientManager}
+    \end{itemize}
+    \item Output
+    \begin{itemize}
+      \item \texttt{client} -- The updated client, if a number was assigned
+            successfully
+    \end{itemize}
+  \end{itemize}
+  \clearpage
+
+  \item \textbf{Categories \& Choices}
+  \begin{table}[!hbtp]
+    \centering
+    \normalsize
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Parameter} & \textbf{Category} & \textbf{Choices} \\ \hline
+      \texttt{clientNif}
+      & \textit{Vos} client
+        & $\#numbers = 0$           \\ \cline{3-3}
+      & & $\#numbers \in [1,5[$     \\ \cline{3-3}
+      & & $\#numbers = 5\ (\rm{MAX})$ \\ \cline{2-3}
+      & Special cases
+        & $\texttt{client}_{\texttt{nif}}\footnotemark
+           \notin \texttt{clients}$ \\ \cline{3-3}
+      & & $\texttt{clientNif} \notin [10^8,10^9-1[$ \\ \hline
+      \texttt{phoneNumber}
+      & \textit{Vos} phone number
+        & Free (Unassigned)   \\ \cline{3-3}
+      & & Not free (Assigned) \\ \cline{2-3}
+      & Invalid number
+        & $\texttt{phoneNumber} \notin [10^8,10^9-1]$ \\ \hline
+      \texttt{clients}
+      & $n$-elements
+        & $n = 0$ (Empty)                  \\ \cline{3-3}
+      & & $n \in [1,\rm{MAX}]$ (Not empty) \\ \hline
+    \end{tabular}
+  \end{table}
+  \footnotetext{A client whose nif is \texttt{clientNif}, not \texttt{clientNif}
+    itself.}
+
+  \item \textbf{Constraints}
+  \begin{itemize}
+    \normalsize
+    \item Empty \texttt{clients} list precludes the possibility of assigning a
+          \texttt{phoneNumber}
+  \end{itemize}
+
+  \item \textbf{Test Cases}
+  \begin{table}[!hbtp]
+    \centering
+    \normalsize
+    \begin{tabular}{|c|l|l|l|l|l|}
+      \cline{2-6}
+      \multicolumn{1}{}{}
+        & \multicolumn{3}{|c}{\textbf{Choices}}
+        & \multicolumn{2}{|c|}{\textbf{Expected Result}} \\
+      \hline
+      \textbf{\#}
+        & \texttt{clientNif} & \texttt{phoneNumber} & \texttt{clients}
+        & \textbf{Exception} & \texttt{client} \\
+      \hline
+       1 & $\#numbers = 0$ & Free & $n \in [1,\rm{MAX}]$
+         & NO & $\#numbers = 1$ \\ \hline
+       2 & $\#numbers = 0$ & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       3 & $\#numbers = 0$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+
+       4 & $\#numbers \in [1,5[$ & Free & $n \in [1,\rm{MAX}]$
+         & NO & $\#numbers \in ]1,5]$ \\ \hline
+       5 & $\#numbers \in [1,5[$ & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       6 & $\#numbers \in [1,5[$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+
+       7 & $\#numbers = 5$ & Free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       8 & $\#numbers = 5$ & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       9 & $\#numbers = 5$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+
+
+      10 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+           & Free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+      11 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+           & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+      12 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+           & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+
+
+      13 & $\notin [10^8,10^9-1]$ & Free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+      14 & $\notin [10^8,10^9-1]$ & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+      15 & $\notin [10^8,10^9-1]$ & $\notin [10^8,10^9-1]$& $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+
+    \end{tabular}
+  \end{table}
+\end{itemize}
