@@ -28,20 +28,22 @@
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage[
-  a4paper,
-  top=1in,   bottom=1in,
-  left=.75in,right=.75in
+ a4paper,
+ top=1in,   bottom=1in,
+ left=.75in,right=.75in
 ]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{import}
 \usepackage{lastpage}
 \usepackage{lipsum}
+\usepackage[outputdir=../../../target/tex]{minted}
 
-\title{
-  \textbf{Software Testing and Validation -- 2017/18} \\%
-  \textbf{\large Instituto Superior Técnico} \\ \vspace{.25\baselineskip}%
-  \textbf{\textit{Vos} -- Project Report} \\ \vspace{.25\baselineskip}%
-  \textbf{\large Group 01 -- Alameda} \vspace{-.25\baselineskip}%
+
+\usemintedstyle{friendly}
+\newmintedfile[java]{java}{
+  autogobble,
+  breaklines,
+  tabsize=2
 }
 
 \pagestyle{fancy}
