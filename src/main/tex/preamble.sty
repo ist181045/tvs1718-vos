@@ -27,6 +27,7 @@
 
 \usepackage{fancyhdr}
 \usepackage{float}
+\usepackage{forest}
 \usepackage[
  a4paper,
  top=1in,   bottom=1in,
@@ -61,5 +62,30 @@
       \textbf{Francisca Cambra}\\ist181057%
   \and\textbf{Rui Ventura}\\ist181045}
 \date{\vfill\today}
+
+\forestset{
+  declare toks={elo}{}, % Edge Label Options
+  anchors/.style={anchor=#1,child anchor=#1,parent anchor=#1},
+  dot/.style={tikz+={\fill (.child anchor) circle[radius=#1];}},
+  dot/.default=2pt,
+  decision edge label/.style n args=3{
+    edge label/.expanded={node[midway,auto=#1,anchor=#2,\forestoption{elo}]{\strut$\unexpanded{#3}$}}
+},
+decision/.style={if n=1
+  {decision edge label={left}{east}{#1}}
+  {decision edge label={right}{west}{#1}}
+},
+decision tree/.style={
+  for tree={
+    s sep=1.2em,l=16ex,
+      if n children=0{anchors=north}{
+        if n=1{anchors=south east}{anchors=south west}},
+      math content,
+  },
+  anchors=south, outer sep=2pt,
+  dot=3pt,for descendants=dot,
+  delay={for descendants={split option={content}{;}{content,decision}}},
+ }
+}
 
 \endinput
