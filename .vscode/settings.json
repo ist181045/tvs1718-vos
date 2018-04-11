@@ -1,5 +1,14 @@
 {
   "latex-workshop.latex.outputDir": "../../../target/tex",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdflatex -> copy report",
+      "tools": [
+        "pdflatex",
+        "copy report"
+      ]
+    }
+  ],
   "latex-workshop.latex.tools": [
     {
       "name": "pdflatex",
@@ -13,5 +22,13 @@
         "%DOC%"
       ]
     },
+    {
+      "name": "copy report",
+      "command": "cp",
+      "args": [
+        "%DIR%/../../../target/tex/%DOCFILE%.pdf",
+        "../../../report.pdf"
+      ]
+    }
   ],
 }
