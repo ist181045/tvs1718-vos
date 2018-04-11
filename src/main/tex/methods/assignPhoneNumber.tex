@@ -81,8 +81,7 @@ not change anything and throws the \texttt{InvalidOperationException} exception.
       \textbf{Parameter} & \textbf{Category} & \textbf{Choices} \\ \hline
       \texttt{clientNif}
       & \textit{Vos} client
-        & $\#numbers = 0$           \\ \cline{3-3}
-      & & $\#numbers \in [1,5[$     \\ \cline{3-3}
+        & $\#numbers \in [1,5[$     \\ \cline{3-3}
       & & $\#numbers = 5\ (\rm{MAX})$ \\ \cline{2-3}
       & Special cases
         & $\texttt{client}_{\texttt{nif}}\footnotemark
@@ -124,46 +123,38 @@ not change anything and throws the \texttt{InvalidOperationException} exception.
         & \texttt{clientNif} & \texttt{phoneNumber} & \texttt{clients}
         & \textbf{Exception} & \texttt{client} \\
       \hline
-       1 & $\#numbers = 0$ & Free & $n \in [1,\rm{MAX}]$
-         & NO & $\#numbers = 1$ \\ \hline
-       2 & $\#numbers = 0$ & Not free & $n \in [1,\rm{MAX}]$
-         & YES & --- \\ \hline
-       3 & $\#numbers = 0$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
-         & YES & --- \\ \hline
-
-       4 & $\#numbers \in [1,5[$ & Free & $n \in [1,\rm{MAX}]$
+       1 & $\#numbers \in [1,5[$ & Free & $n \in [1,\rm{MAX}]$
          & NO & $\#numbers \in ]1,5]$ \\ \hline
-       5 & $\#numbers \in [1,5[$ & Not free & $n \in [1,\rm{MAX}]$
+       2 & $\#numbers \in [1,5[$ & Not free & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-       6 & $\#numbers \in [1,5[$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
-         & YES & --- \\ \hline
-
-       7 & $\#numbers = 5$ & Free & $n \in [1,\rm{MAX}]$
-         & YES & --- \\ \hline
-       8 & $\#numbers = 5$ & Not free & $n \in [1,\rm{MAX}]$
-         & YES & --- \\ \hline
-       9 & $\#numbers = 5$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+       3 & $\#numbers \in [1,5[$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
 
+       4 & $\#numbers = 5$ & Free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       5 & $\#numbers = 5$ & Not free & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
+       6 & $\#numbers = 5$ & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
+         & YES & --- \\ \hline
 
-      10 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+
+       7 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
            & Free & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-      11 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+       8 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
            & Not free & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-      12 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
+       9 & $\texttt{client}_{\texttt{nif}} \notin \texttt{clients}$
            & $\notin [10^8,10^9-1]$ & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
 
 
-      13 & $\notin [10^8,10^9-1]$ & Free & $n \in [1,\rm{MAX}]$
+      10 & $\notin [10^8,10^9-1]$ & Free & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-      14 & $\notin [10^8,10^9-1]$ & Not free & $n \in [1,\rm{MAX}]$
+      11 & $\notin [10^8,10^9-1]$ & Not free & $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-      15 & $\notin [10^8,10^9-1]$ & $\notin [10^8,10^9-1]$& $n \in [1,\rm{MAX}]$
+      12 & $\notin [10^8,10^9-1]$ & $\notin [10^8,10^9-1]$& $n \in [1,\rm{MAX}]$
          & YES & --- \\ \hline
-
     \end{tabular}
   \end{table}
 \end{itemize}
