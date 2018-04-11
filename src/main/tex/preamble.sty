@@ -39,14 +39,6 @@
 \usepackage{lipsum}
 \usepackage[outputdir=../../../target/tex]{minted}
 
-
-\usemintedstyle{friendly}
-\newmintedfile[java]{java}{
-  autogobble,
-  breaklines,
-  tabsize=2
-}
-
 \pagestyle{fancy}
 \fancyhf{}
 \rfoot{Page \thepage~of \pageref{LastPage}}
@@ -62,6 +54,13 @@
       \textbf{Francisca Cambra}\\ist181057%
   \and\textbf{Rui Ventura}\\ist181045}
 \date{\vfill\today}
+
+\usemintedstyle{friendly}
+\newmintedfile[java]{java}{
+  autogobble,
+  breaklines,
+  tabsize=2
+}
 
 \forestset{
   declare toks={elo}{}, % Edge Label Options
