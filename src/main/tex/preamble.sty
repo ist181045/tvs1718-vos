@@ -41,12 +41,14 @@
 \usepackage[figuresleft]{rotating}
 \usepackage{rotfloat}
 \usepackage{tablefootnote}
+\usepackage{tikz}
 \usepackage{wrapfig}
 
 \pagestyle{fancy}
 \fancyhf{}
 \rfoot{Page \thepage~of \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0pt}
+
 \title{{\bfseries
   Software Testing and Validation -- 2017/18 \\%
   {\Large Instituto Superior Técnico} \\%
@@ -66,6 +68,20 @@
   breaklines,
   tabsize=2
 }
+
+\usetikzlibrary{automata,positioning,arrows}
+\tikzset{node distance=3cm,
+         align=left,
+         ->,
+         >=stealth',
+         every state/.style={
+           thick,
+           rectangle,
+           font=\normalsize\tt},
+         initial text={\tt new},
+        every node/.style={
+          font=\scriptsize\tt},
+          pos=0.5}
 
 \forestset{
   declare toks={elo}{}, % Edge Label Options

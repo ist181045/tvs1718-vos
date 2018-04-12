@@ -19,3 +19,64 @@
 % SOFTWARE.
 \subsection{\texttt{Mobile} class}
 \label{sec:classes.mobile}
+A mobile phone can make and receive calls and send and receive texts. A mobile
+phone can be turned on or off (and in this case it cannot make calls, send texts
+and receive calls nor texts). It has two modes (\textit{friend} and
+\textit{silent}) that can be enabled or disabled.
+
+\subsubsection{Test Pattern -- Modal Class Test}
+\label{sec:classes.mobile.pattern}
+
+\subsubsection{Finite State Machine}
+\label{sec:classes.mobile.fsm}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \node[state,name=off,initial]{Off};
+    \node[state,name=on,right of=off]{On};
+    \node[state,name=sf,align=center,right of=on,node distance=6cm]
+      {Friend\\\&\& Silent};
+    \node[state,name=friend,above of=sf]{Friend};
+    \node[state,name=silent,below of=sf]{Silent};
+
+    \draw ($(off.north) - (2mm,0)$) -- ++(0,4mm) -- node[above]{getStatus()}
+      ++(4mm,0) -- ++(0,-4mm);
+    \draw ($(off.north east) - (0,2mm)$) -- node[above]{turnOn()}
+      ($(on.north west) - (0,2mm)$);
+    \draw[<-] ($(off.south east) + (0,2mm)$) -- node[below]{turnOff()}
+      ($(on.south west) + (0,2mm)$);
+    
+    \draw ($(on.east) - (0,2mm)$) -- ++(4mm,0) -- node[right]{getStatus()}
+      ++(0,4mm) -- ++(-4mm,0);
+    \draw ($(on.north west) + (2mm,0)$) |- node[above,pos=.65]
+      {[m=true]\\setFriendMode(m)} ($(friend.north west) - (0,2mm)$);
+    \draw[<-] ($(on.north east) - (2mm,0)$) |- node[below,pos=.65]
+      {[m=false]\\setFriendMode(m)} ($(friend.south west) + (0,2mm)$);
+    
+    \draw ($(friend.south west) + (2mm,0)$) -- node[align=right,left]
+      {[m=true]\\setFriendMode(m)} ($(sf.north west) + (5mm,0)$);
+    \draw[<-] ($(friend.south east) - (2mm,0)$) -- node[right]
+      {[m=false]\\setFriendMode(m)} ($(sf.north east) - (5mm,0)$);
+    
+    \draw ($(friend.east) - (0,2mm)$) -- ++(4mm,0) -- node[right]{getStatus()}
+      ++(0,4mm) -- ++(-4mm,0);
+    \draw ($(sf.east) - (0,2mm)$) -- ++(4mm,0) -- node[right]{getStatus()}
+      ++(0,4mm) -- ++(-4mm,0);
+    \draw ($(silent.east) - (0,2mm)$) -- ++(4mm,0) -- node[right]{getStatus()}
+      ++(0,4mm) -- ++(-4mm,0);
+    
+    \draw ($(silent.north west) + (2mm,0)$) -- node[align=right,left]
+      {[m=true]\\setSilentMode(m)} ($(sf.south west) + (5mm,0)$);
+    \draw[<-] ($(silent.north east) - (2mm,0)$) -- node[right]
+      {[m=false]\\setSilentMode(m)} ($(sf.south east) - (5mm,0)$);
+    
+    \draw ($(on.south west) + (2mm,0)$) |- node[below,pos=.65]
+      {[m=true]\\setSilentMode(m)} ($(silent.south west) + (0,2mm)$);
+    \draw[<-] ($(on.south east) - (2mm,0)$) |- node[above,pos=.65]
+      {[m=false]\\setSilentMode(m)} ($(silent.north west) - (0,2mm)$);
+  \end{tikzpicture}
+  \caption[\texttt{Mobile} class fsm]
+    {\texttt{Mobile} class state machine, representing the class' states and
+      transitions between them}
+  \label{fig:classes.mobile.fsm}
+\end{figure}
