@@ -28,7 +28,8 @@ through all of his registered mobile phones
 
 \subsubsection{Decision Tree}
 \label{sec:methods.computeBill.dtree}
-\begin{center}
+\begin{figure}
+  \centering
   \begin{forest} decision tree
     [\#calls
       [\#texts;{< 10},elo={yshift=4pt}
@@ -46,7 +47,11 @@ through all of his registered mobile phones
       [0.06/call\\free texts\\$v_6$;{\ge 500},align=center,elo={yshift=4pt}]
     ]
   \end{forest}
-\end{center}
+  \caption[\texttt{computeBill} decision tree]
+    {Decision tree describing the ouput given by \texttt{computeBill} based
+      on the number of texts sent and calls made by the client}
+  \label{fig:methods.computeBill.dtree}
+\end{figure}
 
 \subsubsection{Domain Matrices}
 \label{sec:methods.computeBill.matrices}
