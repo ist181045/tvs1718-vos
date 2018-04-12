@@ -135,7 +135,70 @@ and receive calls nor texts). It has two modes (\textit{friend} and
       ]
     ]
   \end{forest}
-  \caption{\texttt{Mobile} class transition tree}
+  \caption[\texttt{Mobile} class transition tree]
+    {\texttt{Mobile} class transition tree. Sneak paths are not represented}
   \label{fig:classes.mobile.ttree}
 \end{sidewaysfigure}
 \clearpage
+
+\subsubsection{Conformance Test Suite}
+\label{sec:classes.mobile.conformance}
+\begin{table}[ht]
+  \scriptsize
+  \centering
+  \begin{tabular}{|c|*{7}{l|}}
+    \hline
+    \textbf{TC} & \textbf{Level 1} & \textbf{Level 2} & \textbf{Level 3}
+      & \textbf{Level 4} & \textbf{Level 5} & \textbf{Next State}
+      & \textbf{Exception} \\ \hline
+     1 & \tt new & --- & --- & --- & --- & \tt Off & NO \\ \hline
+     
+     2 & \tt new & \tt turnOn() & --- & --- & --- & \tt On & NO \\ \hline
+     3 & \tt new & \tt getStatus() & --- & --- & --- & \tt Off & NO \\ \hline
+     
+     4 & \tt new & \tt turnOn() & \tt getStatus() & --- & --- & \tt On & NO \\ \hline
+     5 & \tt new & \tt turnOn() & \tt turnOff() & --- & --- & \tt Off & NO \\ \hline
+     6 & \tt new & \tt turnOn() & \tt [m=true] & --- & --- & \tt Friend & NO \\
+       &         &              & \tt setFriendMode(m) &&&& \\ \hline
+     
+     7 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=false] & --- & \tt On & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setFriendMode(m) &&& \\ \hline
+     8 & \tt new & \tt turnOn() & \tt [m=true] & \tt turnOff() & --- & \tt Off & NO \\
+       &         &              & \tt setFriendMode(m) &&&& \\ \hline
+     9 & \tt new & \tt turnOn() & \tt [m=true] & \tt getStatus() & --- & \tt Friend & NO \\
+       &         &              & \tt setFriendMode(m) &&&& \\ \hline
+    
+    10 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & --- & \tt Both & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setSilentMode(m) &&& \\ \hline
+    11 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt turnOff() & \tt Off & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setSilentMode(m) &&& \\ \hline
+    12 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true]         & \tt [m=false] & \tt Silent & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setSilentMode(m) & \tt setFriendMode(m) && \\ \hline
+    13 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true]         & \tt [m=false] & \tt Friend & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setSilentMode(m) & \tt setSilentMode(m) && \\ \hline
+    14 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt getStatus() & \tt Both & NO \\
+       &         &              & \tt setFriendMode(m) & \tt setSilentMode(m) &&& \\ \hline
+    
+    15 & \tt new & \tt turnOn() & \tt [m=true] & --- & --- & \tt Silent & NO \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    
+    16 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=false] & --- & \tt On & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setSilentMode(m) &&& \\ \hline
+    17 & \tt new & \tt turnOn() & \tt [m=true] & \tt turnOff() & --- & \tt Off & NO \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    18 & \tt new & \tt turnOn() & \tt [m=true] & \tt getStatus() & --- & \tt Silent & NO \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    19 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & --- & \tt Both & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+    20 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt turnOff() & \tt Off & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+    21 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true]         & \tt [m=false] & \tt Silent & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) & \tt setFriendMode(m) && \\ \hline
+    22 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true]         & \tt [m=false] & \tt Friend & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) & \tt setSilentMode(m) && \\ \hline
+    23 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt getStatus() & \tt Both & NO \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+  \end{tabular}
+  \caption{\texttt{Mobile} class conformance test suite}
+  \label{tab:classes.mobile.conformance}
+\end{table}
