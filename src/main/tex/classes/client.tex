@@ -19,3 +19,113 @@
 % SOFTWARE.
 \subsection{\texttt{Client} class}
 \label{sec:classes.client}
+Each client of \textit{Vos} has a name (with a minimal length of 5) and by its
+social security number (designated as nif). This number is a unique identifier
+in \textit{Vos}. A client can have several phone numbers managed by \textit{Vos}
+(between 1 and 5). Each client can associate a mobile phone to each of his
+assigned phone numbers.
+
+Each client can register in the system a given amount of phone number of
+\textit{friends}. The maximum number of phone number a client can register is
+equal to three times the number of phone numbers plus five.
+
+\subsubsection{Test Pattern -- Non-Modal Class Test}
+\label{sec:classes.client.pattern}
+
+\subsubsection{Class Invariant}
+\label{sec:classes.client.invariant}
+\begin{wraptable}{l}{0pt}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Client variables}} \\ \hline
+    \textbf{Variable} & \textbf{Type} \\ \hline
+    \texttt{name}         & \texttt{String}        \\ \hline
+    \texttt{nif}          & \texttt{int}           \\ \hline
+    \texttt{numbers} & \texttt{List<Integer>} \\ \hline
+    \texttt{friends}      & \texttt{List<Integer>} \\ \hline
+  \end{tabular}
+  \caption{\texttt{Client} class' variables and their respective types}
+  \label{tab:classes.client.invariant.vars}
+  \vspace{-4\baselineskip}
+\end{wraptable}
+
+Domain restrictions
+\begin{itemize}
+  \item $\texttt{name.length()} \ge 5$
+  \item $\texttt{nif} \in [10^8,10^9[$
+  \item $\texttt{numbers.size()} \in [1,5]$
+  \item $\texttt{friends.size()} \le 3 \times \texttt{numbers.size()} + 5 $
+\end{itemize}
+The logical conjunction of all of these restrictions makes up the Class
+Invariant
+
+\subsubsection{On and Off points}
+\label{sec:classes.client.points}
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular}{|l|*{2}{c|}}
+    \hline
+    \textbf{Boundary}               & \textbf{ON} & \textbf{OFF} \\ \hline
+    $\texttt{name.length()} \ge 5$  &     5       &      4       \\ \hline
+    $\texttt{nif} \ge 10^8$         &   $10^8$    &   $10^8-1$   \\ \hline
+    $\texttt{nif} < 10^9$           &   $10^9$    &   $10^9-1$   \\ \hline
+    $\texttt{numbers.size()} \ge 1$ &     1       &      0       \\ \hline
+    $\texttt{numbers.size()} < 5$   &     5       &      4       \\ \hline
+    $\texttt{friends.size()} \le 3n\tablefootnote{\texttt{numbers.size()}} + 5$
+      & $3n + 5$ & $3n + 6$ \\ \hline
+  \end{tabular}
+  \caption{On and Off points for the \texttt{Client} class' invariant
+    boundaries}
+\end{table}
+\newpage
+
+\subsubsection{Domain Matrix}
+\label{sec:classes.client.matrix}
+\begin{sidewaystable}[H]
+  \centering
+  \small
+  \begin{tabular}{|*{3}{l|}*{12}{c|}}
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Boundary}}
+      & \multicolumn{12}{|c|}{\textbf{Test Cases}} \\ \hline
+    \textbf{Variable} & \textbf{Condition} & \textbf{Type}
+      & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\ \hline
+    $\texttt{name.length()}$
+    & $\ge 5$
+              & ON  &5&&&&&&&&&&& \\ \cline{3-15}
+    &         & OFF &&4&&&&&&&&&& \\ \cline{2-15}
+    & Typical & IN
+      &&& 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+    $\texttt{nif}$
+    & $\ge 10^8$
+              & ON  &&&$10^8$&&&&&&&&&   \\ \cline{3-15}
+    &         & OFF &&&&$10^8-1$&&&&&&&& \\ \cline{2-15}
+    & $< 10^9$
+              & ON  &&&&&$10^9$&&&&&&&   \\ \cline{3-15}
+    &         & OFF &&&&&&$10^9-1$&&&&&& \\ \cline{2-15}
+    & Typical & IN
+      & $10^8+1$ & $10^8+2$ &&&&& $10^8+3$ & $10^8+4$ & $10^8+5$ & $10^8+6$
+      & $10^8+7$ & $10^8+8$  \\ \hline
+    $\texttt{numbers.size()}$
+    & $\ge 1$
+              & ON  &&&&&&&1&&&&& \\ \cline{3-15}
+    &         & OFF &&&&&&&&0&&&& \\ \cline{2-15}
+    & $< 5$
+              & ON  &&&&&&&&&5&&& \\ \cline{3-15}
+    &         & OFF &&&&&&&&&&4&& \\ \cline{2-15}
+    & Typical & IN
+      & 2 & 3 & 4 & 3 & 2 & 3 &&&&& 4 & 3 \\ \hline
+    $\texttt{friends.size()}$
+    & $\le 3n + 5$
+              & ON  &&&&&&&&&&&17& \\ \cline{3-15}
+    &         & OFF &&&&&&&&&&&&15 \\ \cline{2-15}
+    & Typical & IN
+      &0&1&2&3&4&5&6&7&8&9&& \\ \hline
+    \multicolumn{3}{|c|}{\textbf{Expected Result}}
+      & Y & N & Y & N & N & Y & Y & N & N & Y & Y & N \\ \hline
+  \end{tabular}
+  \caption{\texttt{Client} class test cases}
+  \label{tab:classes.client.matrix}
+\end{sidewaystable}
+\clearpage
