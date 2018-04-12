@@ -94,43 +94,43 @@ and receive calls nor texts). It has two modes (\textit{friend} and
 \begin{sidewaysfigure}[H]
   \begin{forest} transition tree
     [,draw=none
-      [Off,transition root
-        [Off,edge label={node[above,align=left,pos=.66]{\scriptsize\tt getStatus()}}]
-        [On,edge label={node[above,align=left,pos=.62]{\scriptsize\tt turnOn()}}
-          [Silent,edge label={node[above,align=left,pos=.73]
+      [\tt Off,transition root
+        [\tt Off,edge label={node[above,align=left,pos=.66]{\scriptsize\tt getStatus()}}]
+        [\tt On,edge label={node[above,align=left,pos=.62]{\scriptsize\tt turnOn()}}
+          [\tt Silent,edge label={node[above,align=left,pos=.73]
             {\texttt{\scriptsize [m=true]}\\\texttt{\scriptsize setSilentMode(m)}}}
-            [Both,edge label={node[above,align=left,pos=.73]
+            [\tt Both,edge label={node[above,align=left,pos=.73]
                 {\texttt{\scriptsize [m=true]}\\\texttt{\scriptsize setFriendMode(m)}}}
-              [Both,edge label={node[above,align=left,pos=.67]{\scriptsize\tt getStatus()}}]
-              [Friend,edge label={node[above,align=left,pos=.73]
+              [\tt Both,edge label={node[above,align=left,pos=.67]{\scriptsize\tt getStatus()}}]
+              [\tt Friend,edge label={node[above,align=left,pos=.73]
                 {\texttt{\scriptsize [m=false]}\\\texttt{\scriptsize setFriendMode(m)}}}]
-              [Silent,edge label={node[above,align=left,pos=.73]
+              [\tt Silent,edge label={node[above,align=left,pos=.73]
                 {\texttt{\scriptsize [m=false]}\\\texttt{\scriptsize setFriendMode(m)}}}]
-              [Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
+              [\tt Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
             ]
-            [Silent,edge label={node[above,align=left,pos=.68]{\scriptsize\tt getStatus()}}]
-            [Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
-            [On,edge label={node[above,align=left,pos=.73]
+            [\tt Silent,edge label={node[above,align=left,pos=.68]{\scriptsize\tt getStatus()}}]
+            [\tt Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
+            [\tt On,edge label={node[above,align=left,pos=.73]
               {\texttt{\scriptsize [m=false]}\\\texttt{\scriptsize setSilentMode(m)}}}]
           ]
-          [Friend,edge label={node[above,align=left,pos=.73]
+          [\tt Friend,edge label={node[above,align=left,pos=.73]
               {\texttt{\scriptsize [m=true]}\\\texttt{\scriptsize setFriendMode(m)}}}
-            [Both,edge label={node[above,align=left,pos=.73]
+            [\tt Both,edge label={node[above,align=left,pos=.73]
               {\texttt{\scriptsize [m=true]}\\\texttt{\scriptsize setSilentMode(m)}}}
-              [Both,edge label={node[above,align=left,pos=.67]{\scriptsize\tt getStatus()}}]
-              [Friend,edge label={node[above,align=left,pos=.73]
+              [\tt Both,edge label={node[above,align=left,pos=.67]{\scriptsize\tt getStatus()}}]
+              [\tt Friend,edge label={node[above,align=left,pos=.73]
                 {\texttt{\scriptsize [m=false]}\\\texttt{\scriptsize setFriendMode(m)}}}]
-              [Silent,edge label={node[above,align=left,pos=.73]
+              [\tt Silent,edge label={node[above,align=left,pos=.73]
                 {\texttt{\scriptsize [m=true]}\\\texttt{\scriptsize setFriendMode(m)}}}]
-              [Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
+              [\tt Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
             ]
-            [Friend,edge label={node[above,align=left,pos=.68]{\scriptsize\tt getStatus()}}]
-            [Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
-            [On,edge label={node[above,align=left,pos=.72]
+            [\tt Friend,edge label={node[above,align=left,pos=.68]{\scriptsize\tt getStatus()}}]
+            [\tt Off,edge label={node[above,align=left,pos=.64]{\scriptsize\tt turnOff()}}]
+            [\tt On,edge label={node[above,align=left,pos=.72]
               {\texttt{\scriptsize [m=false]}\\\texttt{\scriptsize setFriendMode(m)}}}]
           ]
-          [Off,edge label={node[above,align=left,pos=.63]{\scriptsize\tt turnOff()}}]
-          [On,edge label={node[above,align=left,pos=.66]{\scriptsize\tt getStatus()}}]
+          [\tt Off,edge label={node[above,align=left,pos=.63]{\scriptsize\tt turnOff()}}]
+          [\tt On,edge label={node[above,align=left,pos=.66]{\scriptsize\tt getStatus()}}]
         ]
       ]
     ]
@@ -138,3 +138,4 @@ and receive calls nor texts). It has two modes (\textit{friend} and
   \caption{\texttt{Mobile} class transition tree}
   \label{fig:classes.mobile.ttree}
 \end{sidewaysfigure}
+\clearpage
