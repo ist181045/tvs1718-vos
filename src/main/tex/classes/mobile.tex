@@ -31,7 +31,15 @@ and receive calls nor texts). It has two modes (\textit{friend} and
 \label{sec:classes.mobile.fsm}
 \begin{figure}[ht]
   \centering
-  \begin{tikzpicture}
+  \begin{tikzpicture}[->,>=stealth',align=left,node distance=3cm]
+    \tikzset{
+      every state/.style={
+        thick,
+        rectangle,
+        font=\normalsize\tt,
+        initial text=new},
+      every node/.style={
+        font=\scriptsize\tt}}
     \node[state,name=off,initial]{Off};
     \node[state,name=on,right of=off]{On};
     \node[state,name=sf,align=center,right of=on,node distance=6cm]
