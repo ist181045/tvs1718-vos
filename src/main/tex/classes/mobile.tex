@@ -42,10 +42,9 @@ and receive calls nor texts). It has two modes (\textit{friend} and
         font=\scriptsize\tt}}
     \node[state,name=off,initial]{Off};
     \node[state,name=on,right of=off]{On};
-    \node[state,name=sf,align=center,right of=on,node distance=6cm]
-      {Friend\\\&\& Silent};
-    \node[state,name=friend,above of=sf]{Friend};
-    \node[state,name=silent,below of=sf]{Silent};
+    \node[state,name=both,align=center,right of=on,node distance=6cm]{Both};
+    \node[state,name=friend,above of=both]{Friend};
+    \node[state,name=silent,below of=both]{Silent};
 
     \draw ($(off.north) - (2mm,0)$) -- ++(0,4mm) -- node[above]{getStatus()}
       ++(4mm,0) -- ++(0,-4mm);
@@ -73,10 +72,10 @@ and receive calls nor texts). It has two modes (\textit{friend} and
     \draw ($(silent.east) - (0,2mm)$) -- ++(4mm,0) -- node[right]{getStatus()}
       ++(0,4mm) -- ++(-4mm,0);
     
-    \draw ($(silent.north west) + (2mm,0)$) -- node[align=right,left]
-      {[m=true]\\setSilentMode(m)} ($(sf.south west) + (5mm,0)$);
-    \draw[<-] ($(silent.north east) - (2mm,0)$) -- node[right]
-      {[m=false]\\setSilentMode(m)} ($(sf.south east) - (5mm,0)$);
+    \draw ($(silent.north west) + (4mm,0)$) -- node[align=right,left]
+      {[m=true]\\setSilentMode(m)} ($(both.south west) + (2mm,0)$);
+    \draw[<-] ($(silent.north east) - (4mm,0)$) -- node[right]
+      {[m=false]\\setSilentMode(m)} ($(both.south east) - (2mm,0)$);
     
     \draw ($(on.south west) + (2mm,0)$) |- node[below,pos=.65]
       {[m=true]\\setSilentMode(m)} ($(silent.south west) + (0,2mm)$);

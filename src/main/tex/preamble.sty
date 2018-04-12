@@ -77,9 +77,7 @@
   dot/.style={tikz+={\fill (.child anchor) circle[radius=#1];}},
   dot/.default=2pt,
   decision edge label/.style n args=3{
-    edge label/.expanded={node[midway,auto=#1,anchor=#2,\forestoption{elo}]{\strut$\unexpanded{#3}$}}
-},
-decision/.style={if n=1
+  decision/.style={
   {decision edge label={left}{east}{#1}}
   {decision edge label={right}{west}{#1}}
 },
