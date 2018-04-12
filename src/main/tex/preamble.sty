@@ -77,21 +77,46 @@
   dot/.style={tikz+={\fill (.child anchor) circle[radius=#1];}},
   dot/.default=2pt,
   decision edge label/.style n args=3{
+    edge label/.expanded={node[midway,auto=#1,anchor=#2,\forestoption{elo}]{\strut$\unexpanded{#3}$}}},
   decision/.style={
-  {decision edge label={left}{east}{#1}}
-  {decision edge label={right}{west}{#1}}
-},
-decision tree/.style={
-  for tree={
-    s sep=0.5cm,l=3cm,
+    if n=1
+      {decision edge label={left}{east}{#1}}
+      {decision edge label={right}{west}{#1}}
+  },
+  decision tree/.style={
+    for tree={
+      s sep=0.5cm,l=3cm,
       if n children=0{anchors=north}{
         if n=1{anchors=south east}{anchors=south west}},
       math content,
+    },
+    anchors=south, outer sep=2pt,
+    dot=3pt,for descendants=dot,
+    delay={for descendants={split option={content}{;}{content,decision}}},
   },
-  anchors=south, outer sep=2pt,
-  dot=3pt,for descendants=dot,
-  delay={for descendants={split option={content}{;}{content,decision}}},
- }
+  transition root/.style={
+    l=1.4cm,
+    edge label={node[midway,above]{\scriptsize\tt new}},
+    edge path={\noexpand%
+      \draw[->,>=stealth',draw,\forestoption{edge}]
+        ($(!u.parent anchor) + (0,3.5pt)$)
+        -- (.child anchor)\forestoption{edge label};
+    }
+  },
+  transition tree/.style={
+    for tree={
+      s sep=.8cm,l=4.5cm,
+      grow=east,
+      draw,
+      parent anchor=east,
+      child anchor=west,
+      edge path={\noexpand%
+        \path[->,>=stealth',draw,\forestoption{edge}] (!u.parent anchor)
+        -- +(5mm,0)
+        |- (.child anchor)\forestoption{edge label};
+      }
+    }
+  }
 }
 
 \endinput
