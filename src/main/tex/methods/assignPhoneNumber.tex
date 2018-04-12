@@ -25,9 +25,8 @@ public final void assignPhoneNumber(int clientNif, int phoneNumber)
 \end{minted}
 
 Assigns a free phone number to a client of \textit{Vos} if all conditions are
-met. If at least one of these conditions does not hold, then this method does
-not change anything. In such cases, it throws an
-\texttt{InvalidOperationException} exception.
+met. If at least one does not hold, then this method does not change anything,
+throwing an \texttt{InvalidOperationException}.
 
 \subsubsection{Test Pattern -- Category-Partition Test}
 \label{sec:methods.assignPhoneNumber.pattern}
@@ -47,9 +46,11 @@ not change anything. In such cases, it throws an
       \begin{itemize}
         \footnotesize
         \item Invalid nif ($\rm{nif} \notin [10^8,10^9[$)
+        \item A \textit{Vos} client with the given nif doesn't exist
         \item Invalid phone number ($\rm{number} \notin [10^8,10^9[$)
-        \item Client doesn't exist (valid nif)
-        \item Assign a previously assigned number to a client
+        \item It isn't a \textit{Vos} number
+        \item Phone number already assigned
+        \item Client can't be assigned any more numbers
       \end{itemize}
   \end{itemize}
 \end{itemize}
@@ -109,9 +110,12 @@ not change anything. In such cases, it throws an
 \subsubsection{Constraints}
 \label{sec:methods.assignPhoneNumber.constraints}
 \begin{itemize}
-  \normalsize
-  \item Empty \texttt{clients} list precludes the possibility of assigning a
-        \texttt{phoneNumber}
+  \item Empty \texttt{clients} list precludes the assignment of a
+        \texttt{phoneNumber} to a client (which, since the list is empty,
+        mustn't exist)
+  \item Assigning an invalid \texttt{phoneNumber}, one that doesn't belong to
+        \textit{Vos} or one that is already assigned is the same for any kind of
+        client
 \end{itemize}
 
 \subsubsection{Test Cases}
@@ -119,46 +123,31 @@ not change anything. In such cases, it throws an
 \begin{table}[!hbtp]
   \centering
   \normalsize
-  \begin{tabular}{|c|l|l|l|l|l|}
+  \begin{tabular}{|c|*{5}{l|}}
     \cline{2-6}
-    \multicolumn{1}{}{}
-      & \multicolumn{3}{|c}{\textbf{Choices}}
-      & \multicolumn{2}{|c|}{\textbf{Expected Result}} \\
+    \multicolumn{1}{c|}{}
+      & \multicolumn{3}{c|}{\textbf{Choices}}
+      & \multicolumn{2}{c|}{\textbf{Expected Result}} \\
     \hline
     \textbf{TC}
       & \texttt{clientNif} & \texttt{phoneNumber} & \texttt{clients}
       & \textbf{Exception} & \texttt{client} \\
     \hline
-     1 & $\#numbers \in [1,5[$ & Free & $n \in [1,\rm{MAX}]$
-       & NO & $\#numbers \in ]1,5]$ \\ \hline
-     2 & $\#numbers \in [1,5[$ & Not free & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     3 & $\#numbers \in [1,5[$ & $\notin [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-
-     4 & $\#numbers = 5$ & Free & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     5 & $\#numbers = 5$ & Not free & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     6 & $\#numbers = 5$ & $\notin [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-
-     7 & $\texttt{clientNif} \in [10^8,10^9[$ & Free & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     8 & $\texttt{clientNif} \in [10^8,10^9[$ & Not free
-         & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     9 & $\texttt{clientNif} \in [10^8,10^9[$
-         & $\notin [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-     
-    10 & $\texttt{clientNif} \notin [10^8,10^9[$ & Free & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-    11 & $\texttt{clientNif} \notin [10^8,10^9[$ & Not free
-         & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
-    12 & $\texttt{clientNif} \notin [10^8,10^9[$
-         & $\notin [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
-       & YES & --- \\ \hline
+    1 & $\#numbers \in [1,5[$ & Free & $n \in [1,\rm{MAX}]$
+      & NO & $\#numbers \in ]1,5]$ \\ \hline
+    2 & $\#numbers \in [1,5[$ & Not free & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
+    3 & $\#numbers \in [1,5[$ & $\in [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
+    4 & $\#numbers \in [1,5[$ & $\notin [10^8,10^9[$ & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
+    5 & $\#numbers = 5$ & Free & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
+    6 & $\in [10^8,10^9[$ & Free & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
+    7 & $\notin [10^8,10^9[$ & Free & $n \in [1,\rm{MAX}]$
+      & YES & --- \\ \hline
   \end{tabular}
+  \caption{Set of reduced test cases after constraints are applied}
+  \label{tab:methods.assignPhoneNumber.tests}
 \end{table}
