@@ -12,7 +12,8 @@ class ClientManager {
    * not valid, then InvalidOperationException is thrown. If there is already a registered client
    * with an identification number equal to nif, then the DuplicateNifException is thrown.
    */
-  Client register(int nif) throws DuplicateNifException, InvalidOperationException {
+  Client register(String clientName, int nif, int phoneNumber)
+      throws DuplicateNifException, InvalidOperationException {
     // TODO: Implement stub method
     return new Client("", 0, 0);
   }
