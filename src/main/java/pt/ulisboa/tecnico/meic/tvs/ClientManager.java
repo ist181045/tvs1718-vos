@@ -23,7 +23,7 @@ class ClientManager {
    */
   Client getClient(int nif) {
     // TODO: Implement stub method
-    return new Client("", 0, 0);
+    return null;
   }
 
   /**
