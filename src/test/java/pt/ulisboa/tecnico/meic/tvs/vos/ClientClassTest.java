@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package pt.ulisboa.tecnico.meic.tvs;
+package pt.ulisboa.tecnico.meic.tvs.vos;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
@@ -32,7 +32,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pt.ulisboa.tecnico.meic.tvs.exception.InvalidOperationException;
+import pt.ulisboa.tecnico.meic.tvs.vos.exception.InvalidOperationException;
 
 public class ClientClassTest {
 
