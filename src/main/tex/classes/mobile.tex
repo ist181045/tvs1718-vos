@@ -144,8 +144,8 @@ and receive calls nor texts). It has two modes (\textit{friend} and
 \subsubsection{Conformance Test Suite}
 \label{sec:classes.mobile.conformance}
 \begin{table}[ht]
-  \scriptsize
   \centering
+  \scriptsize
   \begin{tabular}{|c|*{7}{l|}}
     \hline
     \textbf{TC} & \textbf{Level 1} & \textbf{Level 2} & \textbf{Level 3}
@@ -202,3 +202,67 @@ and receive calls nor texts). It has two modes (\textit{friend} and
   \caption{\texttt{Mobile} class conformance test suite}
   \label{tab:classes.mobile.conformance}
 \end{table}
+\clearpage
+
+\subsubsection{Sneak Paths}
+\label{sec:classes.mobile.psp}
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|*{5}{c|}}
+    \hline
+    \textbf{Events} & \multicolumn{5}{|c|}{\textbf{States}} \\ \cline{2-6}
+    & \texttt{Off} & \texttt{On} & \texttt{Friend}
+      & \texttt{Silent} & \texttt{Both} \\ \hline
+    \texttt{turnOn()}               & \ok & PSP & PSP & PSP & PSP \\ \hline
+    \texttt{turnOff()}              & PSP & \ok & \ok & \ok & \ok \\ \hline
+    \texttt{setSilentMode(boolean)} & PSP &  ?  &  ?  &  ?  &  ?  \\ \hline
+    \texttt{setFriendMode(boolean)} & PSP &  ?  &  ?  &  ?  &  ?  \\ \hline
+    \texttt{sendSMS()}              & PSP & \ok & \ok & \ok & \ok \\ \hline
+    \texttt{receiveSMS()}           & PSP & \ok &  ?  & \ok &  ?  \\ \hline
+    \texttt{makeCall()}             & PSP & \ok & \ok & PSP & PSP \\ \hline
+    \texttt{acceptCall()}           & PSP & \ok &  ?  & PSP & PSP \\ \hline
+    \texttt{getStatus()}            & \ok & \ok & \ok & \ok & \ok \\ \hline
+  \end{tabular}
+  \caption[\texttt{Mobile} class sneak paths]{Possible situations in which a
+    message should be rejected in the given \texttt{Mobile} class' state}
+  \label{tab:classes.mobile.psp}
+\end{table}
+
+\subsubsection{Sneak Path Test Suite}
+\label{sec:classes.mobile.sneak}
+\begin{table}[ht]
+  \centering
+  \scriptsize
+  \begin{tabular}{|c|*{7}{l|}}
+    \hline
+    \textbf{TC} & \textbf{Level 1} & \textbf{Level 2} & \textbf{Level 3}
+      & \textbf{Level 4} & \textbf{Level 5} & \textbf{Exp State}
+      & \textbf{Exception} \\ \hline
+     1 & \tt new & \tt turnOff() & --- & --- & --- & \tt Off & YES \\ \hline
+     2 & \tt new & \tt setSilentMode() & --- & --- & --- & \tt Off & YES \\ \hline
+     3 & \tt new & \tt setFriendMode() & --- & --- & --- & \tt Off & YES \\ \hline
+     4 & \tt new & \tt sendSMS() & --- & --- & --- & \tt Off & YES \\ \hline
+     5 & \tt new & \tt receiveSMS() & --- & --- & --- & \tt Off & YES \\ \hline
+     6 & \tt new & \tt makeCall() & --- & --- & --- & \tt Off & YES \\ \hline
+     7 & \tt new & \tt acceptCall() & --- & --- & --- & \tt Off & YES \\ \hline
+     8 & \tt new & \tt turnOn() & \tt turnOn() & --- & --- & \tt On & YES \\ \hline
+     9 & \tt new & \tt turnOn() & \tt [m=true] & \tt turnOn() & --- & \tt Friend & YES \\
+       &         &              & \tt setFriendMode(m) &&&& \\ \hline
+    10 & \tt new & \tt turnOn() & \tt [m=true] & \tt turnOn() & --- & \tt Silent & YES \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    11 & \tt new & \tt turnOn() & \tt [m=true] & \tt makeCall() & --- & \tt Silent & YES \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    12 & \tt new & \tt turnOn() & \tt [m=true] & \tt acceptCall() & --- & \tt Silent & YES \\
+       &         &              & \tt setSilentMode(m) &&&& \\ \hline
+    13 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt turnOn() & \tt Both & YES \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+    14 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt makeCall() & \tt Both & YES \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+    15 & \tt new & \tt turnOn() & \tt [m=true]         & \tt [m=true] & \tt acceptCall() & \tt Both & YES \\
+       &         &              & \tt setSilentMode(m) & \tt setFriendMode(m) &&& \\ \hline
+  \end{tabular}
+  \caption[\texttt{Mobile} class sneak path test suite]
+    {Set of test cases able to detect possible sneak paths in the
+      \texttt{Mobile} class}
+\end{table}
+\clearpage
